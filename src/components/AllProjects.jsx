@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiArrowLeft, HiArrowTopRightOnSquare, HiXMark, HiChevronLeft, HiChevronRight, HiPhoto } from 'react-icons/hi2';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // Dynamically import all images from the easybuy assets folder
 const easyBuyImages = import.meta.glob('../assets/easybuy/*.png', { eager: true, as: 'url' });
@@ -72,7 +72,7 @@ const projects = [
         flow: 'The backend handles inventory state and complex pricing rules, emitting socket events for stock updates. The frontend consumes these events to update product availability in real-time without polling.',
         color: 'green',
         link: 'https://easybuy-ecommerce-ten.vercel.app/',
-        repo: '#', // Placeholder
+        repo: '#',
         images: easyBuyImageList // Use the dynamically loaded images
     },
 

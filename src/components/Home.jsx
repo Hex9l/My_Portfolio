@@ -104,7 +104,8 @@ const Home = ({ onOpenGame }) => {
                         className="flex-1 flex flex-col items-center xl:items-start order-1 xl:order-2 animate-float perspective-1000 relative z-20"
                     >
                         <div
-                            className={`relative w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[350px] md:h-[350px] xl:w-[400px] xl:h-[400px] 2xl:w-[450px] 2xl:h-[450px] transition-all duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}
+                            className={`relative w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[350px] md:h-[350px] xl:w-[400px] xl:h-[400px] 2xl:w-[450px] 2xl:h-[450px] transition-all duration-700 preserve-3d cursor-pointer ${isFlipped ? 'rotate-y-180' : ''}`}
+                            style={{ touchAction: 'manipulation' }}
                             onClick={() => setIsFlipped(!isFlipped)}
                         >
 

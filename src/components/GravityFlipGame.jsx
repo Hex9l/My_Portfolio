@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HiPlay, HiArrowPath, HiTrophy, HiBolt, HiSpeakerWave, HiSpeakerXMark } from 'react-icons/hi2';
+import { HiPlay, HiArrowPath, HiTrophy, HiSpeakerWave, HiSpeakerXMark } from 'react-icons/hi2';
 
 // --- SOUND MANAGER ---
-// --- SOUND MANAGER ---
+
 const SoundManager = {
     ctx: null,
     masterGain: null,
@@ -138,8 +138,8 @@ const GravityFlipGame = () => {
         if (gameState === 'PLAYING' && score > sessionStartHighScore.current && !hasTriggeredBest.current && sessionStartHighScore.current > 0) {
             hasTriggeredBest.current = true;
             setShowNewBest(true);
-            // Play a sound if you want
-             if (!SoundManager.isMuted && SoundManager.ctx) {
+
+            if (!SoundManager.isMuted && SoundManager.ctx) {
                 // Simple high pitch beep
                 const ctx = SoundManager.ctx;
                 const osc = ctx.createOscillator();
@@ -493,7 +493,7 @@ const GravityFlipGame = () => {
         if (e && e.cancelable && e.type === 'touchstart') e.preventDefault();
 
         SoundManager.init();
-        
+
         // Reset New Best State
         sessionStartHighScore.current = highScore;
         hasTriggeredBest.current = false;
