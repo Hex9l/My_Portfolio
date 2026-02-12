@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+
+  * {
+    @apply m-0 p-0 box-border select-none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  input, textarea {
+    @apply select-text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+
+  body {
+    @apply font-inter bg-bg-dark text-text-primary overflow-x-hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    @apply no-underline;
+  }
+
+  button {
+    @apply cursor-pointer border-none font-inter;
+  }
+
+  ::selection {
+    @apply bg-purple-500 text-white;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent-purple to-accent-pink bg-clip-text text-transparent;
+  }
+  
+  .text-shadow-3d {
+    text-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.8),
+      0 20px 40px rgba(0, 0, 0, 0.6),
+      0 30px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  /* 3D Flip Utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@layer utilities {
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+    .backface-hidden {
+        backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+        transform: rotateY(180deg);
+    }
+}
+
+/* Debug Mode - Easter Egg */
+.debug-mode * {
+  outline: 1px solid rgba(0, 255, 0, 0.3) !important;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+}
+
+.debug-mode {
+  background-color: #050505 !important;
+  color: #00ff00 !important;
+}
+
+.debug-mode *:not(img):not(video) {
+  /* color: #00ff00 !important; */
+  /* Keep text readable but techy */
+}
+
+.debug-mode img, 
+.debug-mode video {
+  filter: grayscale(100%) opacity(0.2) sepia(100%) hue-rotate(50deg) !important;
+  border: 1px solid #00ff00 !important;
+}
+
+.debug-overlay {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 0, 0.03),
+        rgba(0, 255, 0, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    z-index: 9999;
+}
