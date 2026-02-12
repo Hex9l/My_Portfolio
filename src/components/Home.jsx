@@ -110,7 +110,10 @@ const Home = ({ onOpenGame }) => {
                         >
 
                             {/* --- FRONT FACE (Real Photo) --- */}
-                            <div className="absolute inset-0 backface-hidden flex items-end justify-center">
+                            <div
+                                className="absolute inset-0 backface-hidden flex items-end justify-center"
+                                style={{ transform: 'translateZ(1px)' }}
+                            >
                                 {/* Rotating Dashed Ring */}
                                 <div className="absolute inset-[-20px] border border-white/10 rounded-full border-dashed animate-spin-slow z-0 pointer-events-none"></div>
 
@@ -132,7 +135,10 @@ const Home = ({ onOpenGame }) => {
                             </div>
 
                             {/* --- BACK FACE (3D/Cartoon Avatar) --- */}
-                            <div className="absolute inset-0 backface-hidden rotate-y-180 flex items-end justify-center">
+                            <div
+                                className="absolute inset-0 backface-hidden flex items-end justify-center"
+                                style={{ transform: 'rotateY(180deg) translateZ(1px)' }}
+                            >
                                 {/* Smoke/Glow Effect behind avatar (No Ring/Circle) */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-accent-purple/20 to-transparent opacity-60 blur-2xl -z-10 animate-pulse-slow"></div>
 
