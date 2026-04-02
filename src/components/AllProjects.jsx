@@ -298,7 +298,7 @@ const AllProjects = () => {
                                             </div>
                                         )}
                                         <div className="flex flex-col justify-center">
-                                            <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white leading-tight md:leading-none tracking-tighter uppercase sm:whitespace-nowrap">
+                                            <h2 className="text-xl md:text-3xl lg:text-4xl font-black text-white leading-tight md:leading-none tracking-tighter uppercase sm:whitespace-nowrap">
                                                 {project.title.split('—')[0].trim()}
                                             </h2>
                                             {project.title.includes('—') && (
