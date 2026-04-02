@@ -25,7 +25,7 @@ const CommandPalette = () => {
         { id: 'expertise', label: 'Expertise', icon: HiCommandLine, type: 'link', path: '/#expertise' },
         { id: 'engineering', label: 'Engineering', icon: HiCpuChip, type: 'link', path: '/#engineering' },
         { id: 'research', label: 'Research', icon: HiBeaker, type: 'link', path: '/#research' },
-        { id: 'resume', label: 'Resume', icon: HiDocumentText, type: 'external', path: '/resume.pdf' },
+        { id: 'resume', label: 'Resume', icon: HiDocumentText, type: 'external', path: '/Henil_Resume.pdf' },
         { id: 'contact', label: 'Contact', icon: HiEnvelope, type: 'link', path: '/#contact' },
     ];
 

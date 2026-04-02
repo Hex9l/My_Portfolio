@@ -77,7 +77,7 @@ const Home = ({ onOpenGame }) => {
                             <motion.a
                                 whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
                                 whileTap={{ scale: 0.95 }}
-                                href="/resume.pdf"
+                                href="/Henil_Resume.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-block px-5 py-2 md:px-8 md:py-3 xl:px-10 xl:py-4 border border-white/20 text-white text-[10px] sm:text-xs md:text-sm xl:text-base font-bold rounded-full backdrop-blur-sm transition-colors"
