@@ -12,6 +12,8 @@ export default {
                 'text-secondary': '#a1a1aa',
                 'accent-purple': '#8b5cf6',
                 'accent-pink': '#ec4899',
+                'accent-yellow': '#fbbf24',
+                'accent-emerald': '#10b981',
                 'primary-orange': '#fd6f00',
             },
             fontFamily: {

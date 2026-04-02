@@ -6,6 +6,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // Dynamically import all images from the easybuy assets folder
 const easyBuyImages = import.meta.glob('../assets/easybuy/*.png', { eager: true, as: 'url' });
 
+// Dynamically import all images from the STREET MACHINE assets folder
+const streetMachineImages = import.meta.glob('../assets/STREET MACHINE/*.{png,jpg,jpeg,webp}', { eager: true, as: 'url' });
+
+// Dynamically import all images from the RK Interior Solution assets folder
+const rkInteriorImages = import.meta.glob('../assets/RK interior solution/*.{png,jpg,jpeg,webp}', { eager: true, as: 'url' });
+
+// Static Logo Imports
+import easyBuyLogo from '../assets/easybuy/image.png';
+import streetMachineLogo from '../assets/STREET MACHINE/logo.png';
+
 // Enhanced name mapping for better presentation
 const nameMapping = {
     'AboutUS': 'About Us',
@@ -43,6 +53,11 @@ const nameMapping = {
     'ViewProduct': 'Product Details View'
 };
 
+// Convert the imported object into an array of objects for Street Machine
+const streetMachineImageList = Object.entries(streetMachineImages).map(([path, url], index) => {
+    return { src: url, alt: `Street Machine View ${index + 1}` };
+});
+
 // Convert the imported object into an array of objects
 const easyBuyImageList = Object.entries(easyBuyImages).map(([path, url]) => {
     const fileName = path.split('/').pop().replace('.png', '').trim();
@@ -51,16 +66,26 @@ const easyBuyImageList = Object.entries(easyBuyImages).map(([path, url]) => {
     return { src: url, alt: prettyName };
 });
 
+// Convert the imported object into an array of objects for RK Interior Solution
+const rkInteriorImageList = Object.entries(rkInteriorImages).map(([path, url], index) => {
+    // Extract filename and simplify for alt tags
+    const fileName = path.split('/').pop().replace(/\.(png|jpg|jpeg|webp)$/i, '').trim();
+    // Screenshots get a generic "View N" alt if they don't have a better name
+    const prettyName = fileName.replace(/^Screenshot\s+\d{4}-\d{2}-\d{2}\s+/, 'RK View ').trim() || `Design View ${index + 1}`;
+    return { src: url, alt: prettyName };
+});
+
 const projects = [
     {
         id: 'easybuy',
-        title: 'EasyBuy - Ultra-Fast E-Commerce',
-        subtitle: 'MERN Stack · Real-Time Delivery · Secure Auth Flow',
+        logo: easyBuyLogo,
+        title: 'EasyBuy — Ultra-Fast Grocery Delivery',
+        subtitle: 'Oct 2023 - Dec 2023 • MERN Stack • Real-Time Delivery',
         overview: 'A high-performance e-commerce platform designed for speed and convenience, featuring an "8-minute delivery" promise. The application offers a seamless shopping experience with dynamic categorization, robust search, and a secure user authentication system.',
         challenges: [
-            { title: 'Instant Search', desc: 'Implementing sub-millisecond search results for thousands of products.' },
-            { title: 'Inventory Sync', desc: 'Real-time inventory updates to prevent ordering out-of-stock items during high traffic.' },
-            { title: 'Secure Auth', desc: 'Building a robust authentication flow with JWT, including password recovery.' }
+            { title: 'Instant Search', desc: 'Implementing sub-millisecond search results for thousands of products using optimized MongoDB queries and client-side indexing.' },
+            { title: 'Inventory Sync', desc: 'Real-time inventory updates to prevent ordering out-of-stock items during high traffic periods.' },
+            { title: 'Secure Auth', desc: 'Building a robust authentication flow with JWT, including password recovery and secure session management.' }
         ],
         solution: 'Built with a scalable MERN stack architecture. Utilizes MongoDB for flexible product data schemas and Redux for efficient client-side state management. The UI is crafted with Tailwind CSS for a premium, responsive feel across all devices.',
         tech: {
@@ -75,7 +100,55 @@ const projects = [
         repo: '#',
         images: easyBuyImageList // Use the dynamically loaded images
     },
-
+    {
+        id: 'streetmachine',
+        logo: streetMachineLogo,
+        title: 'Street Machine — Car and Bike Studio',
+        subtitle: 'Jan 2024 - Mar 2024 • MERN Stack • AI Vehicle Advisor',
+        overview: 'A premium automotive intelligence platform featuring a high-performance database of 300+ supercars and motorcycles. Built for enthusiasts, it offers real-time comparison tools, and a luxury-centric UI that prioritizes engineering "Intel" over conventional utility.',
+        challenges: [
+            { title: 'Engineering Intel', desc: 'Curating and structuring complex specifications for 300+ vehicles, prioritizing raw performance data like top speed and power-to-weight ratios.' },
+            { title: 'Comparison Logic', desc: 'Developing a multi-attribute comparison matrix that dynamically evaluates vehicle performance metrics side-by-side in real-time.' },
+            { title: 'Performance Rendering', desc: 'Optimizing high-resolution asset delivery and implementing client-side pagination to ensure fluid interaction across media-heavy galleries.' }
+        ],
+        solution: 'Architected a scalable Node.js/Express backend coupled with a highly responsive React frontend. Integrated dynamic state filtering and a premium bento-grid layout to deliver an engaging, high-performance user interface.',
+        tech: {
+            frontend: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite', 'GSAP', 'Lenis'],
+            backend: ['Node.js', 'Express.js', 'Mongoose', 'Cloudinary API'],
+            infra: ['MongoDB', 'Render', 'Vercel']
+        },
+        deployment: 'Frontend hosted on Vercel for fast global edge delivery, and the backend Node.js API services are securely deployed on Render.',
+        flow: 'Client interactions are routed through responsive, paginated RESTful endpoints. Admin media uploads are streamed efficiently to Cloudinary with resulting URLs stored in MongoDB for fluid content delivery.',
+        color: 'purple',
+        link: 'https://street-machine.vercel.app/',
+        repo: '#',
+        images: streetMachineImageList
+    },
+    {
+        id: 'rkinterior',
+        logo: 'RK',
+        isTextLogo: true,
+        title: 'RK Interior Solution — Luxury Design Hub',
+        subtitle: 'Feb 2024 - Apr 2024 • MERN Stack • Project Management',
+        overview: 'A high-end digital portfolio and management platform for a professional interior design studio. The application unifies a sophisticated design gallery with a robust admin dashboard, enabling real-time content updates, category management, and secure user interactions through a premium, responsive interface.',
+        challenges: [
+            { title: 'Dynamic Filtering', desc: 'Developing a multi-attribute filtering system that allows users to navigate hundreds of designs across various room types and themes with seamless UI transitions.' },
+            { title: 'Asset Pipeline', desc: 'Implementing a high-performance media pipeline using Cloudinary for streamlined image and video delivery, ensuring fast load times for a media-heavy application.' },
+            { title: 'Admin Governance', desc: 'Building a secure administrative suite featuring OTP-based email verification and role-based access to manage the sensitive data of an active design firm.' }
+        ],
+        solution: 'Architected using the MERN stack with Redux Toolkit for centralized state management. Integrated Framer Motion and custom CSS animations to create a luxury feel, while the backend utilizes secure RESTful endpoints and Cloudinary APIs for efficient asset manipulation.',
+        tech: {
+            frontend: ['React', 'Redux Toolkit', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+            backend: ['Node.js', 'Express.js', 'MongoDB', 'Cloudinary API'],
+            infra: ['Vercel', 'Render', 'OTP Auth']
+        },
+        deployment: 'Frontend hosted on Vercel for global edge delivery, and the backend Node.js API services are securely deployed on Render with automated CI/CD pipelines.',
+        flow: 'Admin actions are authenticated via OTP and then routed through a transactional API that streams media to Cloudinary and persists metadata in MongoDB. The frontend consumes this real-time data to update the interactive gallery.',
+        color: 'amber',
+        link: 'https://rk-interior-solution.vercel.app/',
+        repo: '#',
+        images: rkInteriorImageList
+    }
 ];
 
 const AllProjects = () => {
@@ -182,10 +255,13 @@ const AllProjects = () => {
                 </motion.div>
 
                 {/* Projects List */}
-                <div className="space-y-32">
+                <div className="space-y-16">
                     {projects.map((project, index) => (
-                        <motion.div
-                            key={project.id}
+                        <React.Fragment key={project.id}>
+                            {index > 0 && (
+                                <div className="border-t border-white/10 w-full" />
+                            )}
+                            <motion.div
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
@@ -195,11 +271,44 @@ const AllProjects = () => {
                             {/* Project Header */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-12">
                                 <div>
-                                    <div className="flex items-center gap-4 mb-4">
-                                        <span className={`h-px w-12 bg-accent-${project.color}`}></span>
-                                        <span className={`text-accent-${project.color} font-mono text-sm font-bold tracking-widest uppercase`}>{project.id}</span>
+                                    <div className="flex items-center gap-6 mb-4 group/logo">
+                                        {project.logo && (
+                                            <div className="relative">
+                                                {/* Subtle Glow Backdrop */}
+                                                <div className={`absolute -inset-3 bg-accent-${project.color}/15 rounded-full blur-xl opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500`} />
+                                                
+                                                <div 
+                                                    className={`relative flex-shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-2xl border border-white/10 p-2 flex items-center justify-center backdrop-blur-md group-hover/logo:border-accent-${project.color}/40 transition-all duration-300 shadow-xl overflow-hidden`}
+                                                    style={project.isTextLogo ? { backgroundColor: '#D5AD40' } : { backgroundColor: 'rgba(255,255,255,0.03)' }}
+                                                >
+                                                    {project.isTextLogo ? (
+                                                        <span className="text-black font-black text-2xl md:text-3xl tracking-tighter font-serif leading-none pt-0.5">
+                                                            {project.logo}
+                                                        </span>
+                                                    ) : (
+                                                        project.logo && (
+                                                            <img 
+                                                                src={project.logo} 
+                                                                alt={`${project.title} logo`} 
+                                                                className="w-full h-full object-contain filter drop-shadow-md"
+                                                            />
+                                                        )
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
+                                        <div className="flex flex-col justify-center">
+                                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-none tracking-tighter uppercase whitespace-nowrap">
+                                                {project.title.split('—')[0].trim()}
+                                            </h2>
+                                            {project.title.includes('—') && (
+                                                <span className="text-base md:text-lg lg:text-xl font-bold text-text-secondary mt-1 tracking-tight">
+                                                    {project.title.split('—')[1].trim()}
+                                                </span>
+                                            )}
+                                        </div>
                                     </div>
-                                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">{project.title}</h2>
+
                                     <p className="text-text-secondary text-lg leading-relaxed mb-8 border-l-2 border-white/10 pl-6">
                                         {project.overview}
                                     </p>
@@ -309,7 +418,7 @@ const AllProjects = () => {
                             )}
 
                             {/* Details Grid */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 border-t border-white/10 pt-12">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 pt-12">
                                 <div>
                                     <h3 className="text-white font-bold uppercase tracking-wider text-xl mb-6 flex items-center gap-3">
                                         <span className="w-8 h-8 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-sm">!</span>
@@ -342,6 +451,7 @@ const AllProjects = () => {
                             </div>
 
                         </motion.div>
+                    </React.Fragment>
                     ))}
                 </div>
 
