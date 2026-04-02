@@ -271,7 +271,7 @@ const AllProjects = () => {
                             {/* Project Header */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-12">
                                 <div>
-                                    <div className="flex items-center gap-6 mb-4 group/logo">
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-4 group/logo">
                                         {project.logo && (
                                             <div className="relative">
                                                 {/* Subtle Glow Backdrop */}
@@ -298,7 +298,7 @@ const AllProjects = () => {
                                             </div>
                                         )}
                                         <div className="flex flex-col justify-center">
-                                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-none tracking-tighter uppercase whitespace-nowrap">
+                                            <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white leading-tight md:leading-none tracking-tighter uppercase">
                                                 {project.title.split('—')[0].trim()}
                                             </h2>
                                             {project.title.includes('—') && (
